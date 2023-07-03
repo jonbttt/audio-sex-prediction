@@ -1,21 +1,18 @@
 import streamlit as st
 import tensorflow as tf
 import matplotlib.pyplot as plt
-from audio_recorder_streamlit import audio_recorder
+from audiorecorder import audiorecorder
 from converter import convert
 from converter import predict
 
 st.title('Audio Gender Detection')
-audio_bytes = audio_recorder()
-if audio_bytes:
-    st.audio(audio_bytes, format="audio/wav")
-if st.button('Press button to re-record'):
-    st.experimental_rerun
-else:
-    pass
-
+st.title("Audio Recorder")
+audio = audiorecorder("Click to record", "Recording...")
+if len(audio) > 0:
+    wav_file = open("audio.mp3", "wb")
+    wav_file.write(audio.tobytes())
 if st.button('Press button to continue'):
-    spectrogram = convert(audio_bytes)
+    spectrogram = convert(wav_file)
     values = predict(spectrogram)
     values = str(values)
     values = values.replace('[[ ','')
