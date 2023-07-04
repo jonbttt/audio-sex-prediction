@@ -6,13 +6,15 @@ from converter import convert
 from converter import predict
 
 st.title('Audio Gender Detection')
-st.title("Audio Recorder")
+st.subheader("Audio Recorder")
 audio = audiorecorder("Click to record", "Recording...")
 if len(audio) > 0:
     wav_file = open("audio.mp3", "wb")
     wav_file.write(audio.tobytes())
 if st.button('Press button to continue'):
     spectrogram = convert(wav_file)
+    st.subheader("Spectrogram:")
+    st.image(spectrogram)
     values = predict(spectrogram)
     values = str(values)
     values = values.replace('[[ ','')
