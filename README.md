@@ -1,7 +1,7 @@
 # audio-sex-prediction
-Streamlit app for sex prediction of a human voice recording
+Streamlit app for sex (male or female) prediction of a human voice recording
 
-Sex prediction is done through the use of a TensorFlow model trained on spectrograms from sample audio recordings
+Prediction is done through the use of a TensorFlow model trained on spectrograms from sample audio recordings
 
 ## Process:
 Audio is recorded through theevann/streamlit-audiorecorder or uploaded into the app and converted into a spectrogram using Scipy and Matplotlib.
